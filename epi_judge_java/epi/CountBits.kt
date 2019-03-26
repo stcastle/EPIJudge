@@ -8,8 +8,13 @@ object CountBits {
     @EpiTest(testDataFile = "count_bits.tsv")
     @JvmStatic
     fun countBits(x: Int): Short {
-        // TODO - you fill in here.
-        return 0
+        var numBits: Int = 0
+        var y = x
+        while (y != 0) {
+            numBits += y and 1
+            y = y ushr 1
+        }
+        return numBits.toShort()
     }
 
     @JvmStatic
@@ -18,9 +23,7 @@ object CountBits {
         System.exit(
                 GenericTest
                         .runFromAnnotations(args, "CountBits.kt",
-                                object : Any() {
-
-                                }.javaClass.enclosingClass)
+                                object {}.javaClass.enclosingClass)
                         .ordinal)
     }
 }
